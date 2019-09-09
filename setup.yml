@@ -1,0 +1,34 @@
+---
+ - hosts: workstation
+   remote_user: alex
+
+   tasks:
+   - name: Copy my private key to ~/.ssh/
+     copy:
+       src: ~/.ssh/mykey
+       dest: ~/.ssh/id_rsa
+
+   - name: Install git, vim, curl 
+     apt:
+       name: "{{ packages }}"
+     vars:
+       packages:
+       - git
+       - vim
+       - curl
+       
+   - name: Upgrade all software on the system
+     apt:
+       name: "*"
+       state: latest
+       update_cache: yes
+
+   - name: Ensure ~/Development directory exists
+i    file:
+       path: ~/Development
+       state: directory
+       mode: '0755'
+
+   - name: Install sublime text editor
+   - name: Install sublime text editor plugins (Vintage, VintageEX)
+   - name: Configure git global username and email
