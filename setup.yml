@@ -16,19 +16,65 @@
        - git
        - vim
        - curl
+     become: yes
+     become_method: sudo
        
    - name: Upgrade all software on the system
      apt:
        name: "*"
        state: latest
        update_cache: yes
+     become: yes
+     become_method: sudo
 
    - name: Ensure ~/Development directory exists
-i    file:
+     file:
        path: ~/Development
        state: directory
        mode: '0755'
 
    - name: Install sublime text editor
-   - name: Install sublime text editor plugins (Vintage, VintageEX)
-   - name: Configure git global username and email
+     snap:
+       name: sublime-text
+       classic: yes
+     become: yes
+     become_method: sudo
+
+   - name: Install sublime text editor plugins (Vintage)
+     copy:
+       src: Preferences.sublime-settings
+       dest: ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
+
+   - name: Install sublime text editor plugins (VintageEx)
+     get_url:
+       url: https://bitbucket.org/guillermooo/vintageex/downloads/VintageEx.sublime-package
+       dest: "~/Downloads/VintageEx.sublime-package.zip"
+
+   - name: Create the VintageEx package directory
+     file:
+       path: "~/.config/sublime-text-3/Installed Packages/VintageEx"
+       state: directory
+
+   - name: Unzip the VintageEx file
+     unarchive:
+       src: ~/Downloads/VintageEx.sublime-package.zip
+       dest: "~/.config/sublime-text-3/Installed Packages/VintageEx"
+       remote_src: yes
+    
+   - name: Configure git global username
+     git_config:
+       name: user.name
+       scope: global
+       value: "Miguel Alex Cantu"
+
+   - name: Configure git global email
+     git_config:
+       name: user.email
+       scope: global
+       value: "miguel.can2@gmail.com"
+       
+   - name: Set global editor for git
+     git_config:
+       name: core.editor
+       scope: global
+       value: vim
