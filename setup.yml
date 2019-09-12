@@ -7,6 +7,7 @@
      copy:
        src: ~/.ssh/mykey
        dest: ~/.ssh/id_rsa
+       mode: 0600
 
    - name: Install git, vim, curl 
      apt:
