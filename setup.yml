@@ -9,7 +9,7 @@
        dest: ~/.ssh/id_rsa
        mode: 0600
 
-   - name: Install git, vim, curl 
+   - name: Install Useful packages
      apt:
        name: "{{ packages }}"
      vars:
@@ -17,6 +17,7 @@
        - git
        - vim
        - curl
+       - gnome-tweak-tool
      become: yes
      become_method: sudo
        
