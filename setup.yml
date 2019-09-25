@@ -80,3 +80,17 @@
        name: core.editor
        scope: global
        value: vim
+
+   - name: Install Gtile GNOME extensions
+     git:
+       repo: 'https://github.com/gTile/gTile.git'
+       dest: ~/.local/share/gnome-shell/extensions/gTile@vibou
+
+   - name: Move over dconf file from host machine
+     copy:
+       src: my_gnome_settings
+       dest: ~/my_gnome_settings
+       mode: 0600
+
+   - name: Load gnome Dconf settings
+     shell: dconf load /org/gnome/ < ~/my_gnome_settings
