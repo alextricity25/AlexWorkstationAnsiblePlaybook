@@ -18,6 +18,7 @@
        - vim
        - curl
        - gnome-tweak-tool
+       - tmux
      become: yes
      become_method: sudo
        
