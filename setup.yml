@@ -19,6 +19,7 @@
        - curl
        - gnome-tweak-tool
        - tmux
+       - zsh
      become: yes
      become_method: sudo
        
@@ -42,6 +43,11 @@
        classic: yes
      become: yes
      become_method: sudo
+
+   - name: Ensure sublime config directories
+     file:
+       path: ~/.config/sublime-text-3/Packages/User
+       state: directory
 
    - name: Install sublime text editor plugins (Vintage)
      copy:
@@ -96,10 +102,10 @@
    - name: Load gnome Dconf settings
      shell: dconf load /org/gnome/ < ~/my_gnome_settings
 
-   - name: Move over .bash_aliases
+   - name: Move over .aliases
      copy:
-       src: .bash_aliases
-       dest: ~/.bash_aliases
+       src: .aliases
+       dest: ~/.aliases
 
    - name: Ensure ~/.local/share/nvim/site/autoload directory exists
      file:
@@ -128,3 +134,17 @@
 
    - name: Install fzf on the system
      shell: ./.fzf/install --all
+
+   - name: Copy ~/.zshrc
+     copy:
+       src: .zshrc
+       dest: ~/.zshrc
+
+   - name: Download oh-m-zsh install script
+     get_url:
+       url: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+       dest: "~/Downloads/install.sh"
+       mode: "0755"
+
+   - name: Run oh-my-zsh install script
+     raw: "sh ~/Downloads/install.sh --unattended"
