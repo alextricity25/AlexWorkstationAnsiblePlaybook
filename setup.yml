@@ -135,11 +135,6 @@
    - name: Install fzf on the system
      shell: ./.fzf/install --all
 
-   - name: Copy ~/.zshrc
-     copy:
-       src: .zshrc
-       dest: ~/.zshrc
-
    - name: Download oh-m-zsh install script
      get_url:
        url: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
@@ -147,4 +142,22 @@
        mode: "0755"
 
    - name: Run oh-my-zsh install script
-     raw: "sh ~/Downloads/install.sh --unattended"
+     shell: "sh ~/Downloads/install.sh --unattended"
+     args:
+       creates: ~/.oh-my-zsh/oh-my-zsh.sh
+
+   - name: Copy ~/.zshrc
+     copy:
+       src: .zshrc
+       dest: ~/.zshrc
+
+   - name: Download spaceship prompt
+     git:
+       repo: 'https://github.com/denysdovhan/spaceship-prompt.git'
+       dest: ~/.oh-my-zsh/custom/themes/spaceship-prompt
+
+   - name: Create symbolic link to spaceship theme
+     file:
+       src: ~/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme
+       dest: ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme
+       state: link
