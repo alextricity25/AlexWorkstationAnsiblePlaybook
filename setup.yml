@@ -20,6 +20,7 @@
        - gnome-tweak-tool
        - tmux
        - zsh
+       - fonts-powerline
      become: yes
      become_method: sudo
        
@@ -92,6 +93,7 @@
      git:
        repo: 'https://github.com/gTile/gTile.git'
        dest: ~/.local/share/gnome-shell/extensions/gTile@vibou
+       update: no
 
    - name: Move over dconf file from host machine
      copy:
