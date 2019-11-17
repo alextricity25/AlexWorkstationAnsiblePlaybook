@@ -21,6 +21,7 @@
        - tmux
        - zsh
        - fonts-powerline
+       - httpie
      become: yes
      become_method: sudo
 
