@@ -23,6 +23,11 @@
        - fonts-powerline
      become: yes
      become_method: sudo
+
+   - name: Ensure proper tmux configurations
+     copy:
+       src: tmux.conf
+       dest: ~/.tmux.conf
        
    - name: Upgrade all software on the system
      apt:
