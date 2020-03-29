@@ -34,6 +34,10 @@ Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
+" Installing vim-polyglot
+" https://freshman.tech/vim-javascript/
+Plug 'sheerun/vim-polyglot'
+
 call plug#end()
 
 " Turn line numbers on
