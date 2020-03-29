@@ -22,7 +22,6 @@
        - zsh
        - fonts-powerline
        - httpie
-       - npm
      become: yes
      become_method: sudo
 
