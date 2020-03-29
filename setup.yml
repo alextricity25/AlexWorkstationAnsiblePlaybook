@@ -178,6 +178,7 @@
      tags:
        - nvm
 
+   # https://github.com/nvm-sh/nvmhttps://github.com/nvm-sh/nvm
    - name: Run NVM installation script
      shell: "sh ~/Downloads/install_nvm.sh"
      args:
