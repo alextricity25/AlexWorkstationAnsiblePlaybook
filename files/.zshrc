@@ -60,3 +60,6 @@ fi
 #
 # My aliases
 source ~/.aliases
+
+# Load profile
+source ~/.profile
