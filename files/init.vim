@@ -52,3 +52,7 @@ let g:NERDTreeQuitOnOpen=1
 
 " Bind fzf to ctrl+p
 noremap <C-P> :Files<CR>
+
+" Always use the system clipboard for all operations
+" See :help cliboard for more information
+set clipboard+=unnamedplus
