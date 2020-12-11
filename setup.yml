@@ -44,6 +44,12 @@
        state: directory
        mode: '0755'
 
+   - name: Ensure ~/Downloads directory exists
+     file:
+       path: ~/Downloads
+       state: directory
+       mode: '0755'
+
    - name: Install sublime text editor
      snap:
        name: sublime-text
